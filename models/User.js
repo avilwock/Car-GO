@@ -1,4 +1,4 @@
-const {Model, DataTypes} = require ('sequelize');
+const { Model, DataTypes } = require('sequelize');
 const bcrypt = require('bcrypt');
 const sequelize = require('../config/connection');
 
@@ -39,17 +39,13 @@ User.init(
             type: DataTypes.ENUM('novice', 'enthusiast', 'professional'),
             allowNull: false,
         },
-        vehicle_make: {
-            type: DataTypes.STRING,
+        car_id: {
+            type: DataTypes.INTEGER,
             allowNull: false,
-        },
-        vehicle_model: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-        year: {
-            type: DataTypes.NUMBER,
-            allowNull: false,
+            references: {
+                model: 'car',
+                key: 'id'
+            }
         }
     },
     {
@@ -66,5 +62,4 @@ User.init(
         modelName: 'user',
 }
 );
-
-model.exports = User; 
+module.exports = User; 
