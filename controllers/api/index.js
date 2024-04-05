@@ -1,17 +1,14 @@
-// Importing the express router module and creating a router instance
-const router = require('express').Router();
+const router = require('express').Router(); // Importing the express router module and creating a router instance
 
-// Importing userRoutes from the './userRoutes' file
-const userRoutes = require('./userRoutes');
+const userRoutes = require('./userRoutes');// Importing userRoutes from the './userRoutes' file
+const commentRoutes = require('./commentRoutes'); // Importing commentRoutes from the './commentRoutes' file
+const postRoutes = require('./postRoutes'); // Importing postRoutes from the './postRoutes' file
+const carRoutes = require('./carRoutes');// Importing carRoutes from the './carRoutes' file
 
-// Importing projectRoutes from the './projectRoutes' file
-const projectRoutes = require('./projectRoutes');//this may change
+router.use('/users', userRoutes); // Mounting userRoutes under the '/users' endpoint
+router.use('/comments', commentRoutes); // Mounting commentRoutes under the '/comments' endpoint
+router.use('/posts', postRoutes); // Mounting postRoutes under the '/posts' endpoint
+router.use('/cars', carRoutes); // Mounting carRoutes under the '/cars' endpoint
 
-// Mounting userRoutes under the '/users' endpoint
-router.use('/users', userRoutes);
+module.exports = router; // Exporting the router to make it available for use in other files
 
-// Mounting projectRoutes under the '/projects' endpoint
-router.use('/projects', projectRoutes);//this may change
-
-// Exporting the router to make it available for use in other files
-module.exports = router;
