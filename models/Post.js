@@ -20,10 +20,14 @@ Post.init(
             type: DataTypes.TEXT,
             allowNull: false,  
         },
+        photo: {
+            type: DataTypes.STRING,
+            allowNull: true,
+        },
         date_created: {
             type: DataTypes.DATE,
             allowNull: false,
-            defaultValue: DataTypes.NOW
+            defaultValue: DataTypes.NOW,
         },
         user_id: {
             type: DataTypes.INTEGER,
