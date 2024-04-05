@@ -1,8 +1,12 @@
 const sequelize = require('./userData.json');
-const { User, Project } = require('../models'); //Replace with amanda's information
+const { User, Post, Comment, Car } = require('../models'); //Replace with amanda's information
 
 const userData = require('./userData.json');
-const projectData = require('./projectData.json');//replace with the next file ont his seeds folder
+const postData = require('./postData.json');//replace with the next file ont his seeds folder
+const commentData = require('./commentData.json');//replace with the next file ont his seeds folder
+const carData = require('./carData.json');//replace with the next file ont his seeds folder
+
+
 
 const seedDatabase = async () => {
   await sequelize.sync({ force: true });
