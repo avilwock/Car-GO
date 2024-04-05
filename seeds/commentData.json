@@ -1,0 +1,17 @@
+[
+    {
+        "comment_text": "That depends on where you're located",
+        "user_id": 1,
+        "post_id": 3
+    },
+    {
+        "comment_text": "Is this some sort of joke?",
+        "user_id": 4,
+        "post_id": 1
+    },
+    {
+        "comment_text": "We'll need more information to make an accurate diagnosis",
+        "user_id": 5,
+        "post_id": 2
+    }
+]
