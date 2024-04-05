@@ -20,7 +20,7 @@ Car.init(
         allowNull: false,
     },
     year: {
-        type: DataTypes.NUMBER,
+        type: DataTypes.INTEGER,
         allowNull: false,
         validate: {
             fourDigits(value) {

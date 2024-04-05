@@ -1,4 +1,4 @@
-const sequelize = require('./userData.json');
+const sequelize = require('../config/connection.js');
 const { User, Post, Comment, Car } = require('../models'); //Replace with amanda's information
 
 const userData = require('./userData.json');
@@ -11,17 +11,24 @@ const carData = require('./carData.json');//replace with the next file ont his s
 const seedDatabase = async () => {
   await sequelize.sync({ force: true });
 
-  const users = await User.bulkCreate(userData, {
+  // Create car records
+  const cars = await Car.bulkCreate(carData);
+
+  // Update user data with correct car_id
+  const updatedUserData = userData.map((user, index) => {
+    if (user.car_id) {
+      user.car_id = cars.find(car => car.year === carData[index].year).id;
+    }
+    return user;
+  });
+
+  // Create users with updated data
+  const users = await User.bulkCreate(updatedUserData, {
     individualHooks: true,
     returning: true,
   });
 
-  for (const project of projectData) {
-    await Project.create({
-      ...project,
-      user_id: users[Math.floor(Math.random() * users.length)].id,
-    });
-  }
+  // Your existing code to create posts can follow here
 
   process.exit(0);
 };
