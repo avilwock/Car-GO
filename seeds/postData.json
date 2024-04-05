@@ -1,0 +1,17 @@
+[
+    {
+        "title": "Help!",
+        "content": "I cannot locate the PRNDL!",
+        "user_id": 1
+    },
+    {
+        "title": "What's that sound?",
+        "content": "When I started my car this morning I heard a weird grinding noise",
+        "user_id": 2
+    },
+    {
+        "title": "Good mechanic?",
+        "content": "I'm looking for a good mechanic in the area that won't charge an arm and a leg",
+        "user_id": 3
+    }
+]
