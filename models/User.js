@@ -38,14 +38,6 @@ User.init(
         experience_level: {
             type: DataTypes.ENUM('novice', 'enthusiast', 'professional'),
             allowNull: false,
-        },
-        car_id: {
-            type: DataTypes.INTEGER,
-            allowNull: true,
-            references: {
-                model: 'car',
-                key: 'id'
-            }
         }
     },
     {

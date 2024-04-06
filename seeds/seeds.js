@@ -12,22 +12,21 @@ const seedDatabase = async () => {
   await sequelize.sync({ force: true });
 
   // Create car records
-  const cars = await Car.bulkCreate(carData);
-
-  // Update user data with correct car_id
-  const updatedUserData = userData.map((user, index) => {
-    if (user.car_id) {
-      user.car_id = cars.find(car => car.year === carData[index].year).id;
-    }
-    return user;
-  });
-
-  // Create users with updated data
-  const users = await User.bulkCreate(updatedUserData, {
+  const users = await User.bulkCreate(userData, {
     individualHooks: true,
     returning: true,
   });
 
+  // Update user data with correct car_id
+  const updatedCarData = carData.map((car, index) => {
+    if (car.user_id) {
+      car.user_id = users[index].id;
+    }
+    return car;
+  });
+
+  // Create users with updated data
+await Car.bulkCreate(updatedCarData);
   // Your existing code to create posts can follow here
 
   process.exit(0);
