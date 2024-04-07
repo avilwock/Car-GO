@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Car-Go</title>
+  
+  <link rel="stylesheet" href="/css/style.css">
+
+</head>
+
+<body>
+  <div class="container wrapper">
+<header class="row">
+  <h1><a class="logo" href="/">Car-Go</a></h1>
+      <nav>
+        <ul class="navbar">
+              <a class="link" href="/">Home</a>
+              <a class="link" href="/dash">Dashboard</a>
+              {{#if logged_in}}
+               <li>Welcome {{username}}!</li>
+               <a class="link" href="/" id="logout">Logout</a>
+              {{else}}
+               <a class="link" href="/login">Login</a>
+              {{/if}}
+        </ul>
+      </nav>
+   
+</header>
+
+<main>
+  {{{ body }}}
+</main>
+
+    {{#if logged_in}}
+    
+    <script src="/js/logout.js"></script>
+    {{/if}}
+</div>
+</body>
+
+<footer class = "footer">
+  Made with Care by: 
+</footer>
+
+</html>

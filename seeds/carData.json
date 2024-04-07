@@ -2,26 +2,31 @@
     {
         "make": "Chevy",
         "model": "Malibu",
-        "year": "2005"
+        "year": 2005,
+        "user_id": 3
     },
     {
         "make": "Toyota",
         "model": "Camry",
-        "year": " 2022"
+        "year": 2022,
+        "user_id": 1
     },
     {
         "make": "Ford",
         "model": "Mustang",
-        "year": 2023
+        "year": 2023,
+        "user_id": 2
     },
     {
         "make": "Honda",
         "model": "Civic",
-        "year": "2021"
+        "year": 2021,
+        "user_id": 4
     },
     {
         "make": "Tesla",
         "model": "Model S",
-        "year": "2022"
+        "year": 2022,
+        "user_id": 5
     }
 ]
