@@ -2,6 +2,8 @@
 const Sequelize = require('sequelize');
 //requires .env for security
 require('dotenv').config();
+
+
 //ensures that jawsdb_url is set to allow for use with a site like Heroku
 if (process.env.JAWSDB_URL) {
   sequelize = new Sequelize(process.env.JAWSDB_URL);
