@@ -5,11 +5,20 @@ const { User, Post, Comment } = require('../../models');
 router.get('/', async (req, res) => {
   try {
     const posts = await Post.findAll({
-      include: [{ model: User }, { model: Comment }],
+      include: [
+        { model: User, attributes: [ 'id', 'username' ] }, 
+        { model: Comment, attributes: ['id', 'comment_text', 'user_id'],
+          include: [
+            {
+              model: User,
+              attributes: ['id', 'username']
+            }
+          ] }],
     });
     res.json(posts);
   } catch (err) {
-    res.status(500).json(err);
+    console.error(err);
+    res.status(500).json({message: 'Internal Server Error'})
   }
 });
 
