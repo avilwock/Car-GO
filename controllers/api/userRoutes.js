@@ -34,12 +34,15 @@ router.get('/:id', async (req, res) => {
 });
 
 
-// Create a new car
+// Create a new user
 router.post('/', async (req, res) => {
   try {
+    console.log('New user data:', req.body); // Log the new user data
     const newUser = await User.create(req.body);
+    console.log('New user created:', newUser); // Log the newly created user
     res.status(201).json(newUser);
   } catch (err) {
+    console.error('Error creating new user:', err); // Log any errors that occur
     res.status(400).json(err);
   }
 });

@@ -22,19 +22,22 @@ router.get('/', async (req, res) => {
   }
 });
 
-// Get post by id
+// GET route to render single post page
 router.get('/:id', async (req, res) => {
   try {
+    // Fetch the specific post data
     const postData = await Post.findByPk(req.params.id, {
+      // Include any associated data you need (e.g., user, comments)
       include: [{ model: User }, { model: Comment }],
     });
     if (!postData) {
-      res.status(404).json({ message: 'Post not found with this id' });
-      return;
+      return res.status(404).json({ message: 'Post not found with this id' });
     }
-    res.json(postData);
+    // Render the singlepost.handlebars template with the fetched post data
+    res.render('singlepost', { postData });
   } catch (err) {
-    res.status(500).json(err);
+    console.error(err);
+    res.status(500).json({ message: 'Internal Server Error' });
   }
 });
 

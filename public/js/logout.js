@@ -26,4 +26,4 @@ document.addEventListener('DOMContentLoaded', function() {
       throw new Error('Failed to log out');
     }
   };
-
+});
