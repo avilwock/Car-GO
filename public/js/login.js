@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
       }
   
       // Example AJAX request to send login data to the server
-      fetch('/login', {
+      fetch('/api/users/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
