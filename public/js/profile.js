@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
         {{#each posts}}
         <div class="row mb-2">
           <div class="col-md-8">
-            <h4><a href="/post/{{id}}">{{title}}</a></h4>
+            <h4><a href="/posts/{{id}}">{{title}}</a></h4>
           </div>
           <div class="col-md-4">
             <button class="btn btn-sm btn-danger delete-post" data-id="{{id}}">DELETE</button>
