@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
     });
+
     if (response.ok) {
       // This calls for the login screen if failing to logout
       document.location.replace('/login');
@@ -25,4 +26,4 @@ document.addEventListener('DOMContentLoaded', function() {
       throw new Error('Failed to log out');
     }
   };
-});
+
