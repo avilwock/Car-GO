@@ -44,6 +44,50 @@ router.post('/', async (req, res) => {
   }
 });
 
+router.post('/login', (req, res) => {
+  User.findOne({
+          where: {
+              username: req.body.username // Finding user by username
+          }
+      }).then(dbUserData => {
+          if (!dbUserData) {
+              res.status(400).json({ message: 'No user with that username!' }); // Sending 400 status with error message if no user is found
+              return;
+          }
+          const validPassword = dbUserData.checkPassword(req.body.password); // Checking password validity
+
+          if (!validPassword) {
+              res.status(400).json({ message: 'Incorrect password!' }); // Sending 400 status with error message if password is incorrect
+              return;
+          }
+          req.session.save(() => {
+
+              req.session.user_id = dbUserData.id; // Saving user ID to session
+              req.session.username = dbUserData.username; // Saving user name to session
+              req.session.logged_in = true; // Setting logged_in flag to true in session
+
+              res.redirect('/dash'); // Redirecting to dashboard after successful login
+          });
+      })
+      .catch(err => {
+          console.log(err);
+          res.status(500).json(err); // Handling errors
+      });
+});
+
+// Route to logout a user
+router.post('/logout', (req, res) => {
+  if (req.session.logged_in) {
+      req.session.destroy(() => {
+          res.redirect('/'); // Redirecting to home page after logout
+      });
+  } else {
+      res.status(404).end(); // Sending 404 status if no user is logged in
+  }
+});
+
+
+
 // Update a car by id
 router.put('/:id', async (req, res) => {
   try {

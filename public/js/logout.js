@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Assuming you have a logout button with the class 'logout-btn'
+    console.log('Logout button clicked');
     const logoutButton = document.querySelector('.logout-btn');
   
     // Adding click event listener to the logout button
