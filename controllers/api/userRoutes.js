@@ -65,8 +65,9 @@ router.post('/login', (req, res) => {
               req.session.user_id = dbUserData.id; // Saving user ID to session
               req.session.username = dbUserData.username; // Saving user name to session
               req.session.logged_in = true; // Setting logged_in flag to true in session
+              res.json({ user: dbUserData, message: 'You are now logged in!' });
 
-              res.redirect('/dash'); // Redirecting to dashboard after successful login
+              //res.redirect('/profile'); // Redirecting to dashboard after successful login
           });
       })
       .catch(err => {
