@@ -1,28 +1,28 @@
 <div class="post-details">
     <div class="post">
-    <h1>{{post.title}}</h1>
-    <p>{{post.text}}</p>
-    <p>Posted by {{post.user.name}} on {{format_date created_at}}</p>
+        <h1>{{ post.title }}</h1>
+        <p>{{ post.content }}</p>
+        <p>Posted by {{ post.user.username }} on {{ format_date post.date_created }}</p>
     </div>
 </div>
 
 <h2>Comments:</h2>
 {{#if post.comments.length}}
-<ul>
-    {{#each post.comments}}
-    <li>
-        <div class="comment-details">
-            <p>{{this.comment_text}}</p>
-            <p>Comment by {{this.name}} on {{format_date this.created_at}}</p>
-        </div>
-    </li>
-    {{/each}}
-</ul>
+    <ul>
+        {{#each post.comments}}
+        <li>
+            <div class="comment-details">
+                <p>{{ this.comment_text }}</p>
+                <p>Comment by {{ this.user.username }} on {{ format_date this.created_at }}</p>
+            </div>
+        </li>
+        {{/each}}
+    </ul>
 {{else}}
-<p>No comments available.</p>
+    <p>No comments available.</p>
 {{/if}}
 
-<a href="/dash/edit/{{post.id}}" class="btn edit-post-btn">Edit Post</a>
+<a href="/dash/edit/{{ post.id }}" class="btn edit-post-btn">Edit Post</a>
 
 <!-- Include client-side JavaScript to handle comment submission -->
-<script src="/js/comment.js"></script>
+<script src="/js/add-comment.js"></script>
