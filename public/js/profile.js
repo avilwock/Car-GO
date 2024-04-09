@@ -6,7 +6,6 @@ document.addEventListener('DOMContentLoaded', function() {
         {{#each posts}}
         <div class="row mb-2">
           <div class="col-md-8">
-            <h4><a href="/posts/{{id}}">{{title}}</a></h4>
             <h4><a href="/api/posts/{{id}}">{{title}}</a></h4>
           </div>
           <div class="col-md-4">
