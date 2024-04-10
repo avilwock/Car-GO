@@ -7,22 +7,26 @@
     </div>
 </div>
 
-
-<h2>Comments:</h2>
-{{#if post.comments.length}}
-    <ul>
-        {{#each post.comments}}
+    <span class="border border-dark">
+            <h2>Comments:</h2> 
+    {{#if post.comments.length}}
         <ul>
-            <div class="comment-details">
-                <p>{{ comment_text }}</p>
-                <p>Comment by {{ user.username }} on {{format_date date_created}} </p>
-            </div>
+            {{#each post.comments}}
+            <ul>
+                <div class="comment-details">
+                    <p>{{ comment_text }}</p>
+                    <p>Comment by {{ user.username }} on {{format_date date_created}} </p>
+                </div>
+            </ul>
+            {{/each}}
         </ul>
-        {{/each}}
-    </ul>
-{{else}}
-    <p>No comments available.</p>
-{{/if}}
+    {{else}}
+        <p>No comments available.</p>
+    {{/if}}
+    </span>
+        
+ 
+    
 
 <a href="/dash/edit/{{ post.id }}" class="btn edit-post-btn">Edit Post</a>
 

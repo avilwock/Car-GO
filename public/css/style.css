@@ -37,31 +37,14 @@ h1 {
   margin: 0.67em 0;
 }
 
-/* Grouping content
-   ========================================================================== */
-/**
- * 1. Add the correct box sizing in Firefox.
- * 2. Show the overflow in Edge and IE.
- */
-hr {
-  box-sizing: content-box;
-  /* 1 */
-  height: 0;
-  /* 1 */
-  overflow: visible;
-  /* 2 */
-}
+
+
 
 /**
  * 1. Correct the inheritance and scaling of font size in all browsers.
  * 2. Correct the odd `em` font sizing in all browsers.
  */
-pre {
-  font-family: monospace, monospace;
-  /* 1 */
-  font-size: 1em;
-  /* 2 */
-}
+
 
 /* Text-level semantics
    ========================================================================== */
@@ -97,14 +80,6 @@ strong {
  * 1. Correct the inheritance and scaling of font size in all browsers.
  * 2. Correct the odd `em` font sizing in all browsers.
  */
-code,
-kbd,
-samp {
-  font-family: monospace, monospace;
-  /* 1 */
-  font-size: 1em;
-  /* 2 */
-}
 
 /**
  * Add the correct font size in all browsers.
@@ -184,15 +159,7 @@ select {
   text-transform: none;
 }
 
-/**
- * Correct the inability to style clickable types in iOS and Safari.
- */
-button,
-[type='button'],
-[type='reset'],
-[type='submit'] {
-  -webkit-appearance: button;
-}
+
 
 /**
  * Remove the inner border and padding in Firefox.
@@ -278,17 +245,6 @@ textarea {
 }
 
 /**
- * 1. Correct the odd appearance in Chrome and Safari.
- * 2. Correct the outline style in Safari.
- */
-[type='search'] {
-  -webkit-appearance: textfield;
-  /* 1 */
-  outline-offset: -2px;
-  /* 2 */
-}
-
-/**
  * Remove the inner padding in Chrome and Safari on macOS.
  */
 [type='search']::-webkit-search-decoration {
@@ -353,6 +309,7 @@ html,
 body {
   min-height: 100%;
   background-color: #dad2c4;
+  font-family: 'Roboto', sans-serif;
 }
 
 body {
@@ -387,4 +344,41 @@ p{
   border-radius: 100%;
   border-color: blue
   
+}
+
+.comments{
+  border-width: 2px;
+  border-style: solid;
+  border-color: black;
+}
+
+
+/* Media query for smaller screens */
+@media screen and (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  p {
+    border-width: 5px;
+  }
+}
+
+/* Media query for larger screens */
+@media screen and (min-width: 1200px) {
+  body {
+    font-size: 18px;
+  }
+
+  h2 {
+    font-size: 24px;
+  }
+
+  p {
+    border-width: 15px;
+  }
 }
