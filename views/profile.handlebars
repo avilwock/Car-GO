@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-auto">
-    <h2>Welcome, {{name}}!</h2>
+    <h2>Welcome, {{user.name}}!</h2>
     <!-- Display a welcome message with the user's name -->
   </div>
 </div>
@@ -38,18 +38,15 @@
     <!-- Display a heading for current posts -->
 
     {{#each posts as |post|}}
-    <!-- Iterate over each post -->
-    <div class="row mb-2">
-      <div class="col-md-8">
-        <h4><a href="/post/{{post.id}}">{{post.title}}</a></h4>
-        <!-- Display post title as a link to the individual post page -->
-      </div>
-      <div class="col-md-4">
-        <button class="btn btn-sm btn-danger" data-id="{{post.id}}">DELETE</button>
-        <!-- Button to delete the post -->
-      </div>
-    </div>
-    {{/each}}
+<div class="row mb-2">
+  <div class="col-md-8">
+    <h4><a href="/api/posts/{{post.id}}">{{post.title}}</a></h4> <!-- Updated link -->
+  </div>
+  <div class="col-md-4">
+    <button class="btn btn-sm btn-danger" data-id="{{post.id}}">DELETE</button>
+  </div>
+</div>
+{{/each}}
     <!-- End of post iteration -->
   </div>
   {{/if}}

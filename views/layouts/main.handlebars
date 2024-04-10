@@ -3,44 +3,50 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Car-Go</title>
-  
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <link rel="stylesheet" href="/css/style.css">
-
+  <title>Car-Go</title>
 </head>
 
-<body>
-  <div class="container wrapper">
-<header class="row">
-  <h1><a class="logo" href="/">Car-Go</a></h1>
-      <nav>
-        <ul class="navbar">
-              <a class="link" href="/">Home</a>
-              <a class="link" href="/dash">Dashboard</a>
-              {{#if logged_in}}
-               <li>Welcome {{username}}!</li>
-               <a class="link" href="/" id="logout">Logout</a>
-              {{else}}
-               <a class="link" href="/login">Login</a>
-              {{/if}}
+<body class="body bg-dark">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  <div class="container wrapper bg-dark pt-2">
+    <header class="row bg-dark border border-primary text-center rounded">
+      <h1><a class="logo text-light fs-1" href="/">Car-Go</a></h1>
+      <nav class = "d-flex justify-content-between align-items-end w-100">
+        <ul class="navbar bg-dark text-center">
+          <button class="btn btn-light m-1" type="button">Home</button>
+          <button class="btn btn-light m-1" type="button">Profile</button>
+          {{#if logged_in}}
+            <button class="logout-btn btn btn-light m-1" type="submit" id="logout">Logout</button>
+          {{else}}
+            <form action="/login" method="get">
+              <button class="btn btn-light m-1" type="submit">Login</button>
+            </form>
+          {{/if}}
         </ul>
       </nav>
-   
-</header>
+    </header>
 
-<main>
-  {{{ body }}}
-</main>
+    <main>
+      {{{ body }}}
+    </main>
 
     {{#if logged_in}}
-    
-    <script src="/js/logout.js"></script>
+      <script src="/js/login.js"></script>
+      <script src="/js/logout.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/4.2.0/mustache.min.js"></script>
     {{/if}}
-</div>
+  </div>
+
+  <footer class="footer bg-dark text-light">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          Made with Care by: 
+        </div>
+      </div>
+    </div>
+  </footer>
 </body>
-
-<footer class = "footer">
-  Made with Care by: 
-</footer>
-
 </html>

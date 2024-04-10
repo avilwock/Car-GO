@@ -42,7 +42,7 @@
       <!-- Iterate over each post -->
       <div class="row mb-2">
         <div class="col-md-8">
-          <h4><a href="/post/{{id}}">{{title}}</a></h4>
+          <h4><a href="/api/posts/{{id}}">{{title}}</a></h4>
         </div>
         <div class="col-md-4">
           <button class="btn btn-sm btn-danger delete-post" data-id="{{id}}">DELETE</button>
@@ -61,5 +61,4 @@
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/4.2.0/mustache.min.js"></script>
-<script src="./js/profile.js"></script>
-<!-- Include the JavaScript file for profile-related functionality -->
+<script src="/js/add-post.js"></script>
