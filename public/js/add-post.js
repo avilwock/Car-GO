@@ -1,5 +1,11 @@
 document.addEventListener('DOMContentLoaded', function() {
   const newPostForm = document.querySelector('.new-post-form');
+  const comments = document.querySelector('.border-dark');
+
+  if (comments) {
+    comments.style.border = '2px solid black';
+    comments.style.padding = '10px';
+}
 
   newPostForm.addEventListener('submit', function(event) {
     event.preventDefault();

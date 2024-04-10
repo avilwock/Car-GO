@@ -16,12 +16,9 @@ run npm start
 open in browser with the url 'http://localhost:3001/'
 ## Usage
 
-Provide instructions and examples for use. Include screenshots as needed.
-
-To add a screenshot, create an `assets/images` folder in your repository and upload your screenshot to it. Then, using the relative filepath, add it to your README using the following syntax:
 
    
-    [webpage showing a user creating a new post] (./assets/images/Screenshot%20(62).png)
+    [webpage showing a user commenting on post](./assets/Screenshot%20(63).png)
    
 
 ## Credits
