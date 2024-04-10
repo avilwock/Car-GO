@@ -12,17 +12,27 @@
 {{#if post.comments.length}}
     <ul>
         {{#each post.comments as |comment|}}
-        <li>
+        <ul>
             <div class="comment-details">
-                <p>{{ comment.comment_text }}</p>
-                <p>Comment by {{ comment.user.username }}</p>
+                <p>{{ comment.dataValues.comment_text }}</p>
+                <p>Comment by {{ comment.dataValues.user.dataValues.username }} on {{ format_date comment.dataValues.date_created }}</p>
             </div>
-        </li>
+        </ul>
         {{/each}}
     </ul>
 {{else}}
     <p>No comments available.</p>
 {{/if}}
+
+<form class="add-comment-form" action="/api/comments/{{this.dataValues.id}}" method="POST"> <!-- Include the post ID in the action URL -->
+  <div>
+    <label for="commentText">Add Comment:</label><br>
+    <textarea class="comment-text" name="comment_text" rows="4" cols="50"></textarea>
+    <input type="hidden" name="post_id" value="{{this.dataValues.id}}">
+  </div>
+  <button type="submit" class="add-comment-btn">Submit</button>
+</form>
+
     
 {{/each}}
 

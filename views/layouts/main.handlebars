@@ -12,6 +12,7 @@
   </script>
 </head>
 
+
 <body class="body bg-dark">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
@@ -21,15 +22,12 @@
       <h1><a class="logo text-light fs-1" href="/">Car-Go</a></h1>
       <nav class="d-flex justify-content-between align-items-end w-100">
         <ul class="navbar bg-dark text-center">
-
-          <button><a href="/" class="btn btn-light m-1 btn-custom">Home</a></button>
-          <button><a href="/profile" class="btn btn-light m-1 btn-custom">Profile</a></button>
+          <button><a href="/" class="btn btn-light m-1">Home</a></button>
+          <button><a href="/profile" class="btn btn-light m-1">Profile</a></button>
           {{#if logged_in}}
-          <button class="btn btn-light m-1" type="submit" id="logout">Logout</button>
+          <button><a href="/login" class="btn btn-light m-1" type="submit" id="logout">Logout</a></button>
           {{else}}
-          <form action="/login" method="get">
-            <button class="btn btn-light m-1" type="submit">Login</button>
-          </form>
+          <button> <a href="/login" class = "btn btn-light m-1" type="submit" id="login">Login</a></button>
           {{/if}}
         </ul>
       </nav>
@@ -42,7 +40,7 @@
     {{#if logged_in}}
     <script src="/js/login.js"></script>
     <script src="/js/logout.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/4.2.0/mustache.min.js"></script>
+    {{!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/4.2.0/mustache.min.js"></script> --}}
     {{/if}}
   </div>
 
@@ -51,11 +49,11 @@
       <div class="row">
         <div class="col">
           Made with Care by: Jordan; Amanda and Marisol
+
         </div>
       </div>
     </div>
   </footer>
-
 
 </body>
 

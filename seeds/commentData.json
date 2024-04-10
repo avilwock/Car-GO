@@ -1,16 +1,19 @@
 [
     {
         "comment_text": "That depends on where you're located",
+        "date_created": "12/14/2021",
         "user_id": 1,
         "post_id": 3
     },
     {
         "comment_text": "Is this some sort of joke?",
+        "date_created": "03/27/2023",
         "user_id": 4,
         "post_id": 1
     },
     {
         "comment_text": "We'll need more information to make an accurate diagnosis",
+        "date_created": "04/24/2023",
         "user_id": 5,
         "post_id": 2
     }

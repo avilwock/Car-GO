@@ -6,10 +6,8 @@ router.get('/', async (req, res) => {
   try {
     const posts = await Post.findAll({
       include: [
-        { model: User, attributes: ['id', 'username'] }, 
-        { 
-          model: Comment, 
-          attributes: ['id', 'comment_text', 'user_id'],
+        { model: User, attributes: [ 'id', 'username' ] }, 
+        { model: Comment, attributes: ['id', 'comment_text', 'date_created', 'user_id'],
           include: [
             { model: User, attributes: ['id', 'username'] }
           ] 
@@ -33,7 +31,7 @@ router.get('/:id', async (req, res) => {
         { model: User, attributes: ['id', 'username'] }, 
         { 
           model: Comment, 
-          attributes: ['id', 'comment_text', 'user_id'],
+          attributes: ['id', 'comment_text', 'date_created', 'user_id'],
           include: [
             { model: User, attributes: ['id', 'username'] }
           ] 
