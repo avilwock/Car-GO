@@ -33,7 +33,7 @@ router.get('/login', (req, res) => {
 });
 
 router.get('/', (req, res) => {
- res.render('homepage.handlebars')
+ res.render('homepage')
 
 });
 
