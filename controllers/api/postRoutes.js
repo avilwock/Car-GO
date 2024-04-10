@@ -33,8 +33,9 @@ router.get('/:id', async (req, res) => {
     if (!postData) {
       return res.status(404).json({ message: 'Post not found with this id' });
     }
+    const post = postData.get({ plain: true });
     // Render the singlepost.handlebars template with the fetched post data
-    res.render('singlepost', { postData });
+    res.render('singlepost', { post: post });
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: 'Internal Server Error' });

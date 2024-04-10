@@ -21,16 +21,6 @@ const seedDatabase = async () => {
   // Create comments
   const comments = await Comment.bulkCreate(commentData);
 
-  // Assign posts and comments to users
-  await Promise.all(users.map(async (user, index) => {
-    if (postData[index]) {
-      await user.createPost(postData[index]);
-    }
-    if (commentData[index]) {
-      await user.createComment(commentData[index]);
-    }
-  }));
-
   // Create cars
   await Car.bulkCreate(carData);
 
