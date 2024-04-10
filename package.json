@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@cloudinary/url-gen": "^1.19.0",
     "bcrypt": "^5.0.0",
     "cloudinary": "^2.1.0",
     "connect-session-sequelize": "^7.0.4",

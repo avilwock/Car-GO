@@ -46,6 +46,7 @@ router.get('/', async (req, res) => {
 
     console.log(posts); // Add this line to log the posts data
 
+
  res.render('homepage', { posts, logged_in: req.session.logged_in })
   } catch (err) {
     console.error(err);

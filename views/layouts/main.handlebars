@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <link rel="stylesheet" href="/css/style.css">
   <title>Car-Go</title>
+    <script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript">
+  </script>
 </head>
 
 <body class="body bg-dark">
@@ -13,16 +17,17 @@
   <div class="container wrapper bg-dark pt-2">
     <header class="row bg-dark border border-primary text-center rounded">
       <h1><a class="logo text-light fs-1" href="/">Car-Go</a></h1>
-      <nav class = "d-flex justify-content-between align-items-end w-100">
+      <nav class="d-flex justify-content-between align-items-end w-100">
         <ul class="navbar bg-dark text-center">
-          <button class="btn btn-light m-1" type="button">Home</button>
-          <button class="btn btn-light m-1" type="button">Profile</button>
+
+          <li><a href="/" class="btn btn-light m-1">Home</a></li>
+          <li><a href="/profile" class="btn btn-light m-1">Profile</a></li>
           {{#if logged_in}}
-            <button class="logout-btn btn btn-light m-1" type="submit" id="logout">Logout</button>
+          <button class="logout-btn btn btn-light m-1" type="submit" id="logout">Logout</button>
           {{else}}
-            <form action="/login" method="get">
-              <button class="btn btn-light m-1" type="submit">Login</button>
-            </form>
+          <form action="/login" method="get">
+            <button class="btn btn-light m-1" type="submit">login</button>
+          </form>
           {{/if}}
         </ul>
       </nav>
@@ -33,9 +38,9 @@
     </main>
 
     {{#if logged_in}}
-      <script src="/js/login.js"></script>
-      <script src="/js/logout.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/4.2.0/mustache.min.js"></script>
+    <script src="/js/login.js"></script>
+    <script src="/js/logout.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/4.2.0/mustache.min.js"></script>
     {{/if}}
   </div>
 
@@ -43,10 +48,13 @@
     <div class="container">
       <div class="row">
         <div class="col">
-          Made with Care by: 
+          Made with Care by:
         </div>
       </div>
     </div>
   </footer>
+
+
 </body>
+
 </html>
