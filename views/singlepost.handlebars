@@ -24,7 +24,9 @@
     <p>No comments available.</p>
 {{/if}}
 
-<a href="/dash/edit/{{ post.id }}" class="btn edit-post-btn">Edit Post</a>
+<a href="/dashboard/edit/{{ post.id }}" class="btn edit-post-btn btn-danger text-light">Edit Post</a>
+
+<button type="button" class="btn btn-danger text-light"><a href="/dashboard/new" class="btn">Add New Post</a></button>
 
 <!-- Include client-side JavaScript to handle comment submission -->
 <script src="/js/add-comment.js"></script>

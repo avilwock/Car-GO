@@ -42,7 +42,7 @@ router.get('/:id', async (req, res) => {
       return res.status(404).json({ message: 'Post not found with this id' });
     }
     const post = postData.get({ plain: true });
-    res.json(post);
+    res.render('singlepost', {post: post})
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: 'Internal Server Error' });
@@ -60,21 +60,31 @@ router.post('/', async (req, res) => {
   }
 });
 
-// Update a post by id
+// PUT route to update a post
 router.put('/:id', async (req, res) => {
   try {
-    const updatedPost = await Post.update(req.body, {
-      where: {
-        id: req.params.id,
+    const updatedPost = await Post.update(
+      {
+        title: req.body.title,
+        content: req.body.content
       },
-    });
-    if (!updatedPost[0]) {
-      return res.status(404).json({ message: 'Post not found with this id' });
+      {
+        where: {
+          id: req.params.id
+        }
+      }
+    );
+
+    if (updatedPost[0] === 0) {
+      // If no rows were updated, return 404 Not Found
+      res.status(404).json({ message: 'No post found with this id' });
+    } else {
+      // If the post was successfully updated, return 200 OK
+      res.status(200).json({ message: 'Post updated successfully' });
     }
-    res.json(updatedPost);
-  } catch (err) {
-    console.error(err);
-    res.status(400).json({ message: 'Bad Request' });
+  } catch (error) {
+    console.error('Error updating post:', error);
+    res.status(500).json({ error: 'Internal server error' });
   }
 });
 
