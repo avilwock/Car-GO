@@ -2,16 +2,19 @@
     {
         "title": "Help!",
         "content": "I cannot locate the PRNDL!",
-        "user_id": 1
+        "user_id": 1,
+        "date_created": "03/25/2023" 
     },
     {
         "title": "What's that sound?",
         "content": "When I started my car this morning I heard a weird grinding noise",
-        "user_id": 2
+        "user_id": 2,
+        "date_created": "04/23/2022"
     },
     {
         "title": "Good mechanic?",
         "content": "I'm looking for a good mechanic in the area that won't charge an arm and a leg",
-        "user_id": 3
+        "user_id": 3,
+        "date_created": "12/13/2021"
     }
 ]

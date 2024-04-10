@@ -28,7 +28,16 @@ router.get('/:id', async (req, res) => {
     // Fetch the specific post data
     const postData = await Post.findByPk(req.params.id, {
       // Include any associated data you need (e.g., user, comments)
-      include: [{ model: User }, { model: Comment }],
+      include: [
+        { model: User, attributes: ['id', 'username'] }, 
+        { 
+          model: Comment, 
+          attributes: ['id', 'comment_text', 'user_id'],
+          include: [
+            { model: User, attributes: ['id', 'username'] }
+          ] 
+        }
+      ],
     });
     if (!postData) {
       return res.status(404).json({ message: 'Post not found with this id' });
