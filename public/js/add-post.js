@@ -13,12 +13,12 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!title || !content || !imageFile) {
       alert('Please enter title, content, and select an image for the post.');
       return;
-    }
+    } 
 
     // Upload image to Cloudinary
     const formData = new FormData();
     formData.append('file', imageFile);
-    formData.append('upload_preset', uploadPreset); // Using uploadPreset variable
+    formData.append('User_Image_Uploads', uploadPreset); // Using uploadPreset variable
 
     fetch(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`, {
       method: 'POST',
@@ -64,8 +64,8 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // Cloudinary upload widget configuration
-const cloudName = "your_cloud_name"; // replace with your own cloud name
-const uploadPreset = "your_upload_preset"; // replace with your own upload preset
+const cloudName = "dz4oq10ph"; // replace with your own cloud name
+const uploadPreset = "User_Image_Uploads"; // replace with your own upload preset
 
 // Create Cloudinary upload widget
 const myWidget = cloudinary.createUploadWidget(
@@ -83,6 +83,14 @@ const myWidget = cloudinary.createUploadWidget(
   }
 );
 
+// Add event listener to open Cloudinary widget
+document.getElementById("upload_widget").addEventListener(
+  "click",
+  function () {
+    myWidget.open();
+  },
+  false
+);
 // Add event listener to open Cloudinary widget
 document.getElementById("upload_widget").addEventListener(
   "click",
