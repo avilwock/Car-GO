@@ -12,7 +12,8 @@ router.get('/', async (req, res) => {
     });
     res.json(comments);
   } catch (err) {
-    res.status(500).json(err);
+    console.error(err);
+    res.status(500).json({ message: 'Internal Server Error' });
   }
 });
 
@@ -31,7 +32,8 @@ router.get('/:id', async (req, res) => {
     }
     res.json(comment);
   } catch (err) {
-    res.status(500).json(err);
+    console.error(err);
+    res.status(500).json({ message: 'Internal Server Error' });
   }
 });
 
@@ -41,7 +43,8 @@ router.post('/', async (req, res) => {
     const newComment = await Comment.create(req.body);
     res.status(201).json(newComment);
   } catch (err) {
-    res.status(400).json(err);
+    console.error(err);
+    res.status(400).json({ message: 'Bad Request' });
   }
 });
 
@@ -59,7 +62,8 @@ router.put('/:id', async (req, res) => {
     }
     res.json(updatedComment);
   } catch (err) {
-    res.status(400).json(err);
+    console.error(err);
+    res.status(400).json({ message: 'Bad Request' });
   }
 });
 
@@ -75,12 +79,14 @@ router.delete('/:id', async (req, res) => {
       res.status(404).json({ message: 'Comment not found with this id' });
       return;
     }
-    res.json(deletedComment);
+    res.json({ message: 'Comment deleted successfully' });
   } catch (err) {
-    res.status(500).json(err);
+    console.error(err);
+    res.status(500).json({ message: 'Internal Server Error' });
   }
 });
 
 module.exports = router;
+
 
 

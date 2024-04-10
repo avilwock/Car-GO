@@ -6,19 +6,20 @@ router.get('/', async (req, res) => {
   try {
     const posts = await Post.findAll({
       include: [
-        { model: User, attributes: [ 'id', 'username' ] }, 
-        { model: Comment, attributes: ['id', 'comment_text', 'user_id'],
+        { model: User, attributes: ['id', 'username'] }, 
+        { 
+          model: Comment, 
+          attributes: ['id', 'comment_text', 'user_id'],
           include: [
-            {
-              model: User,
-              attributes: ['id', 'username']
-            }
-          ] }],
+            { model: User, attributes: ['id', 'username'] }
+          ] 
+        }
+      ],
     });
     res.json(posts);
   } catch (err) {
     console.error(err);
-    res.status(500).json({message: 'Internal Server Error'})
+    res.status(500).json({ message: 'Internal Server Error' });
   }
 });
 
@@ -43,8 +44,7 @@ router.get('/:id', async (req, res) => {
       return res.status(404).json({ message: 'Post not found with this id' });
     }
     const post = postData.get({ plain: true });
-    // Render the singlepost.handlebars template with the fetched post data
-    res.render('singlepost', { post: post });
+    res.json(post);
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: 'Internal Server Error' });
@@ -57,7 +57,8 @@ router.post('/', async (req, res) => {
     const newPost = await Post.create(req.body);
     res.status(201).json(newPost);
   } catch (err) {
-    res.status(400).json(err);
+    console.error(err);
+    res.status(400).json({ message: 'Bad Request' });
   }
 });
 
@@ -70,12 +71,12 @@ router.put('/:id', async (req, res) => {
       },
     });
     if (!updatedPost[0]) {
-      res.status(404).json({ message: 'Post not found with this id' });
-      return;
+      return res.status(404).json({ message: 'Post not found with this id' });
     }
     res.json(updatedPost);
   } catch (err) {
-    res.status(400).json(err);
+    console.error(err);
+    res.status(400).json({ message: 'Bad Request' });
   }
 });
 
@@ -88,13 +89,14 @@ router.delete('/:id', async (req, res) => {
       },
     });
     if (!deletedPost) {
-      res.status(404).json({ message: 'Post not found with this id' });
-      return;
+      return res.status(404).json({ message: 'Post not found with this id' });
     }
     res.json(deletedPost);
   } catch (err) {
-    res.status(500).json(err);
+    console.error(err);
+    res.status(500).json({ message: 'Internal Server Error' });
   }
 });
 
 module.exports = router;
+
