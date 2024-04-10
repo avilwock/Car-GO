@@ -32,9 +32,26 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 
-router.get('/', (req, res) => {
- res.render('homepage')
+router.get('/', async (req, res) => {
+  try {
+    const posts = await Post.findAll({
+      include: [
+        {
+          model: Comment,
+          include: User,
+        },
+        User
+      ]
+    });
 
+    console.log(posts); // Add this line to log the posts data
+
+
+ res.render('homepage', { posts, logged_in: req.session.logged_in })
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Server error'})
+  }
 });
 
 router.get('/signup', (req, res) => {
