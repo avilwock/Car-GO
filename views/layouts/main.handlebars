@@ -20,14 +20,12 @@
       <nav class="d-flex justify-content-between align-items-end w-100">
         <ul class="navbar bg-dark text-center">
 
-          <li><a href="/" class="btn btn-light m-1">Home</a></li>
-          <li><a href="/profile" class="btn btn-light m-1">Profile</a></li>
+          <button><a href="/" class="btn btn-light m-1">Home</a></button>
+          <button><a href="/profile" class="btn btn-light m-1">Profile</a></button>
           {{#if logged_in}}
-          <button class="logout-btn btn btn-light m-1" type="submit" id="logout">Logout</button>
+          <button><a href="/login" class="btn btn-light m-1" type="submit" id="logout">Logout</a></button>
           {{else}}
-          <form action="/login" method="get">
-            <button class="btn btn-light m-1" type="submit">login</button>
-          </form>
+          <button> <a href="/login" class = "btn btn-light m-1" type="submit" id="login">Login</a></button>
           {{/if}}
         </ul>
       </nav>
@@ -40,7 +38,7 @@
     {{#if logged_in}}
     <script src="/js/login.js"></script>
     <script src="/js/logout.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/4.2.0/mustache.min.js"></script>
+    {{!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/4.2.0/mustache.min.js"></script> --}}
     {{/if}}
   </div>
 
@@ -48,7 +46,7 @@
     <div class="container">
       <div class="row">
         <div class="col">
-          Made with Care by:
+          Made with Care by: Amanda Vilwock, Marisol Aranda, and Jordan Brown
         </div>
       </div>
     </div>
