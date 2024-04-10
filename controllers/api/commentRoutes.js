@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { User, Post, Comment } = require('../../models');
+const withAuth = require('../../utils/auth'); // Middleware for authentication
 
 // Get all comments
 router.get('/', async (req, res) => {
@@ -45,6 +46,29 @@ router.post('/', async (req, res) => {
   } catch (err) {
     console.error(err);
     res.status(400).json({ message: 'Bad Request' });
+  }
+});
+
+router.post('/:id', withAuth, async (req, res) => {
+  try {
+      const { comment_text, post_id } = req.body; // Extracting comment text and post ID from request body
+      const user_id = req.session.user_id; // Extracting user ID from session
+
+      // Creating a new comment
+      const newComment = await Comment.create({
+          comment_text,
+          post_id,
+          user_id
+      });
+
+      res.redirect('/')
+
+      // Send a response indicating success along with the newly created comment
+      // res.status(201).json(newComment);
+  } catch (error) {
+      // Handle errors
+      console.error('Error creating comment:', error);
+      res.status(500).json({ error: 'Internal server error' });
   }
 });
 
