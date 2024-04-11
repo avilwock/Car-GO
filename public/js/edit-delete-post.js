@@ -20,7 +20,7 @@ async function editFormHandler(event) {
 
     if (response.ok) {
       // Redirect to the dashboard page after successful update
-      document.location.replace('/dashboard');
+      document.location.replace('/profile');
     } else {
       throw new Error(response.statusText);
     }
@@ -31,7 +31,8 @@ async function editFormHandler(event) {
 }
 
 
-document.querySelector('edit-post-form').addEventListener('submit', editFormHandler);
+
+document.querySelector('.edit-post-form').addEventListener('submit', editFormHandler);
 
 // function to delete post
 async function deleteFormHandler(event) {
@@ -47,7 +48,7 @@ async function deleteFormHandler(event) {
   });
 // If successful, redirect the browser to the dashboard page
   if (response.ok) {
-    document.location.replace("/dashboard");
+    document.location.replace("/profile");
   } else {
     alert(response.statusText);
   }
