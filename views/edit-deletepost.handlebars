@@ -1,66 +1,16 @@
-<div class="row">
-  <div class="col-auto">
-    <h2>Welcome, {{name}}!</h2>
-    <!-- Display a welcome message with the user's name -->
-  </div>
-</div>
-
-<div class="row mt-4">
-  <div class="col-md-6">
-    <h3>Create a New Post:</h3>
-    <!-- Display a heading for creating a new post -->
-
-    <form class="form new-post-form">
-      <!-- Form for creating a new post -->
-      <div class="form-group">
-        <label for="post-title">Post Title:</label>
-        <!-- Label for post title input field -->
-        <input class="form-input" type="text" id="post-title" name="post-title" />
-        <!-- Input field for post title -->
-      </div>
-      <div class="form-group">
-        <label for="post-content">Post Content:</label>
-        <!-- Label for post content textarea -->
-        <textarea class="form-input" id="post-content" name="post-content"></textarea>
-        <!-- Textarea for post content -->
-      </div>
-      <div class="form-group">
-        <button type="submit" class="btn btn-primary">Create</button>
-        <!-- Button to submit the form and create the post -->
-      </div>
-    </form>
+<h2 class="card-header">Edit Post</h2>
+<form class="card-body edit-post-form">
+  <div class="form-row">
+    <label for="post-title" class="form-label">Title</label>
+    <input name="post-title" type="text" class="form-input form-control" value="{{post.title}}"/>
   </div>
 
-  <!-- Current Posts -->
-  <div class="col-md-6" id="post-list-container">
-    <h3>Current Posts:</h3>
-    <!-- Display a heading for current posts -->
-
-    <!-- Mustache Template for Posts -->
-    <script id="post-template" type="text/x-mustache">
-      {{#posts}}
-      <!-- Iterate over each post -->
-      <div class="row mb-2">
-        <div class="col-md-8">
-          <h4><a href="/api/posts/{{id}}">{{title}}</a></h4>
-          <!-- Display post title as a link to the individual post page -->
-        </div>
-        <div class="col-md-4">
-          <button class="btn btn-sm btn-danger delete-post" data-id="{{id}}">DELETE</button>
-          <!-- Button to delete the post -->
-        </div>
-      </div>
-      {{/posts}}
-      <!-- End of post iteration -->
-    </script>
-    <!-- End of Mustache Template for Posts -->
+  <div class="form-row">
+    <label class="form-label" for="text">Text</label>
+    <input name="text" type="text" class="form-input form-control" value="{{post.content}}"/>
   </div>
+  <button type="submit" class="submit-btn btn btn-danger">Update Post</button>
+  <button type="button" class="delete-post-btn btn-danger btn">Delete Post</button>
+</form>
 
-  <!-- Other Content -->
-  <div class="col-md-6">
-    <!-- Other content (if any) -->
-  </div>
-</div>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/4.2.0/mustache.min.js"></script>
 <script src="/js/edit-delete-post.js"></script>
