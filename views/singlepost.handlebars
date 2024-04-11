@@ -1,4 +1,3 @@
-<!-- singlepost.handlebars -->
 <div class="post-details">
     <div class="post">
         <h1>{{ post.title }}</h1>
@@ -7,30 +6,24 @@
     </div>
 </div>
 
-    <span class="border border-dark">
-            <h2>Comments:</h2> 
-    {{#if post.comments.length}}
+
+<h2 class="text-light px-4">Comments:</h2>
+{{#if post.comments.length}}
+    <ul>
+        {{#each post.comments}}
         <ul>
-            {{#each post.comments}}
-            <ul>
-                <div class="comment-details">
-                    <p>{{ comment_text }}</p>
-                    <p>Comment by {{ user.username }} on {{format_date date_created}} </p>
-                </div>
-            </ul>
-            {{/each}}
+            <div class="comment-details">
+                <p>{{ comment_text }}</p>
+                <p>Comment by {{ user.username }} on {{format_date date_created}} </p>
+            </div>
         </ul>
-    {{else}}
-        <p>No comments available.</p>
-    {{/if}}
-    </span>
-        
- 
-    
+        {{/each}}
+    </ul>
+{{else}}
+    <p>No comments available.</p>
+{{/if}}
 
 <a href="/dashboard/edit/{{ post.id }}" class="btn edit-post-btn btn-danger text-light">Edit Post</a>
-
-<button type="button" class="btn btn-danger text-light"><a href="/dashboard/new" class="btn">Add New Post</a></button>
 
 <!-- Include client-side JavaScript to handle comment submission -->
 <script src="/js/add-comment.js"></script>

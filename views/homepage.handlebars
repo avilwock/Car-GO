@@ -1,38 +1,42 @@
-{{#each posts as |post| }}
-  <div class="row align-center mb-5">
-    <div class="col-md-6">
-      <h2>{{ post.dataValues.title }}</h2>
-      <!-- Render user's name inside an <h2> element -->
+<div class="container">
+  {{#each posts as |post| }}
+  <div class="border mt-4 p-3"> <!-- Move this div inside the loop -->
+    <div class="row align-center mb-5">
+      <div class="col-md-10">
+        <h2 class="text-light">{{ post.dataValues.title }}</h2>
+        <!-- Render user's name inside an <h2> element -->
         <p> {{ post.dataValues.content }}</p>
         <p> Posted by {{ post.user.dataValues.username }} on {{ format_date post.dataValues.date_created }}</p>
+        <br>
+      </div>
     </div>
-  </div>
-  
-<h2>Comments:</h2>
-{{#if post.comments.length}}
-    <ul>
+
+    <div class="p-3">
+      <h2 class="text-light">Comments:</h2>
+      {{#if post.comments.length}}
+      <ul>
         {{#each post.comments as |comment|}}
         <ul>
-            <div class="comment-details">
-                <p>{{ comment.dataValues.comment_text }}</p>
-                <p>Comment by {{ comment.dataValues.user.dataValues.username }} on {{ format_date comment.dataValues.date_created }}</p>
-            </div>
+          <div class="comment-details">
+            <p>{{ comment.dataValues.comment_text }}</p>
+            <p>Comment by {{ comment.dataValues.user.dataValues.username }} on {{ format_date comment.dataValues.date_created }}</p>
+          </div>
         </ul>
         {{/each}}
-    </ul>
-{{else}}
-    <p>No comments available.</p>
-{{/if}}
-
-<form class="add-comment-form" action="/api/comments/{{this.dataValues.id}}" method="POST"> <!-- Include the post ID in the action URL -->
-  <div>
-    <label for="commentText">Add Comment:</label><br>
-    <textarea class="comment-text" name="comment_text" rows="4" cols="50"></textarea>
-    <input type="hidden" name="post_id" value="{{this.dataValues.id}}">
-  </div>
-  <button type="submit" class="add-comment-btn">Submit</button>
-</form>
-    
-{{/each}}
-
-
+      </ul>
+      {{else}}
+      <p>No comments available.</p>
+      {{/if}}
+    </div>
+    <form class="add-comment-form" action="/api/comments/{{this.dataValues.id}}" method="POST">
+      <!-- Include the post ID in the action URL -->
+      <div>
+        <label for="commentText">Add Comment:</label><br>
+        <textarea class="comment-text" name="comment_text" rows="4" cols="50"></textarea>
+        <input type="hidden" name="post_id" value="{{this.dataValues.id}}">
+      </div>
+      <button type="submit" class="add-comment-btn">Submit</button>
+    </form>
+  </div> <!-- Close the border div here -->
+  {{/each}}
+</div>
