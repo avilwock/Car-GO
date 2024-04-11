@@ -13,7 +13,12 @@ document.addEventListener('DOMContentLoaded', function() {
               console.error('Error uploading image:', error);
           } else if (result && result.event === "success") {
               console.log("Done! Here is the image info: ", result.info);
-              document.getElementById("uploadedimage").setAttribute("src", result.info.secure_url);
+
+              // Get the URL of the uploaded image
+              const imageUrl = result.info.secure_url;
+
+              // Set the uploaded image URL as the source attribute
+              document.getElementById("uploadedimage").setAttribute("src", imageUrl);
           }
       }
   );
@@ -26,28 +31,6 @@ document.addEventListener('DOMContentLoaded', function() {
       false
   );
 
-  // Function to render posts using Mustache
-  function renderPosts(posts) {
-      const postListContainer = document.querySelector('.post-list');
-      const postTemplate = `
-          {{#each posts}}
-          <div class="row mb-2">
-              <div class="col-md-8">
-                  <h4><a href="/api/posts/{{id}}">{{title}}</a></h4>
-              </div>
-              <div class="col-md-4">
-                  <button class="btn btn-sm btn-danger delete-post" data-id="{{id}}">DELETE</button>
-              </div>
-          </div>
-          {{/each}}
-      `;
-      const renderedPosts = Mustache.render(postTemplate, { posts: posts });
-      postListContainer.innerHTML = renderedPosts;
-  }
-
-  // Initial rendering of posts
-  renderPosts([]);
-
   // Event listener for the form submission to create a new post
   const newPostForm = document.querySelector('.new-post-form');
   newPostForm.addEventListener('submit', async function(event) {
@@ -56,45 +39,34 @@ document.addEventListener('DOMContentLoaded', function() {
       const content = document.getElementById('post-content').value;
       const imageUrl = document.getElementById('uploadedimage').getAttribute('src'); // Get uploaded image URL
 
-      try {
-          // Send POST request to create a new post
-          const response = await fetch('/api/posts', {
-              method: 'POST',
-              headers: {
-                  'Content-Type': 'application/json'
-              },
-              body: JSON.stringify({
-                  title: title,
-                  content: content,
-                  imageUrl: imageUrl // Include image URL in the post data
-              })
-          });
+      // Handle the form submission
+      console.log("Title:", title);
+      console.log("Content:", content);
+      console.log("Image URL:", imageUrl);
 
-          if (response.ok) {
-              // Reload the page to display the new post
-              location.reload();
-          } else {
-              console.error('Failed to create post:', response.statusText);
-          }
-      } catch (error) {
-          console.error('Error creating post:', error);
-      }
+      // Construct the data to send to the server
+      const formData = new FormData();
+      formData.append('title', title);
+      formData.append('content', content);
+      formData.append('photo', imageUrl); // Append image URL
 
-      // Clear the form fields after submission
-      document.getElementById('post-title').value = '';
-      document.getElementById('post-content').value = '';
-      document.getElementById('uploadedimage').setAttribute('src', ''); // Clear uploaded image
-  });
-
-  // Event listener for the delete post button
-  document.addEventListener('click', function(event) {
-      if (event.target.classList.contains('delete-post')) {
-          const postId = event.target.dataset.id;
-          // Do something with the postId, e.g., send a request to delete the post
-          console.log("Post deleted with ID:", postId);
-          // Optionally, you can remove the deleted post from the UI
-          event.target.closest('.row').remove();
-      }
+      // Example of sending the data using fetch API
+      fetch('/api/posts', {
+          method: 'POST',
+          body: formData
+      })
+      .then(response => {
+          // Handle response
+          console.log('Server response:', response);
+          // Clear the form fields after successful submission
+          document.getElementById('post-title').value = '';
+          document.getElementById('post-content').value = '';
+          document.getElementById('uploadedimage').setAttribute('src', ''); // Clear uploaded image
+      })
+      .catch(error => {
+          console.error('Error:', error);
+          // Handle error
+      });
   });
 });
-//added the presets
+////post URL
