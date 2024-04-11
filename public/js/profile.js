@@ -1,4 +1,31 @@
 document.addEventListener('DOMContentLoaded', function() {
+  // Cloudinary upload widget configuration
+  const cloudName = "dz4oq10ph"; // Replace with your cloud name
+  const uploadPreset = "User_Image_Uploads"; // Replace with your upload preset
+
+  const myWidget = cloudinary.createUploadWidget(
+      {
+          cloudName: cloudName,
+          uploadPreset: uploadPreset,
+      },
+      (error, result) => {
+          if (error) {
+              console.error('Error uploading image:', error);
+          } else if (result && result.event === "success") {
+              console.log("Done! Here is the image info: ", result.info);
+              document.getElementById("uploadedimage").setAttribute("src", result.info.secure_url);
+          }
+      }
+  );
+
+  document.getElementById("upload_widget").addEventListener(
+      "click",
+      function () {
+          myWidget.open();
+      },
+      false
+  );
+
   // Function to render posts using Mustache
   function renderPosts(posts) {
       const postListContainer = document.querySelector('.post-list');
@@ -69,29 +96,5 @@ document.addEventListener('DOMContentLoaded', function() {
           event.target.closest('.row').remove();
       }
   });
-
-  // Cloudinary upload widget configuration
-  const cloudName = "your_cloud_name"; // Replace with your cloud name
-  const uploadPreset = "your_upload_preset"; // Replace with your upload preset
-
-  const myWidget = cloudinary.createUploadWidget(
-      {
-          cloudName: cloudName,
-          uploadPreset: uploadPreset,
-      },
-      (error, result) => {
-          if (!error && result && result.event === "success") {
-              console.log("Done! Here is the image info: ", result.info);
-              document.getElementById("uploadedimage").setAttribute("src", result.info.secure_url);
-          }
-      }
-  );
-
-  document.getElementById("upload_widget").addEventListener(
-      "click",
-      function () {
-          myWidget.open();
-      },
-      false
-  );
 });
+//added the presets
