@@ -1,108 +1,81 @@
 document.addEventListener('DOMContentLoaded', function() {
+  let imageUrl;
+  
+  // Cloudinary upload widget configuration
+  const cloudName = "dz4oq10ph"; // Replace with your cloud name
+  const uploadPreset = "User_Image_Uploads"; // Replace with your upload preset
+
+  const myWidget = cloudinary.createUploadWidget(
+      {
+          cloudName: cloudName,
+          uploadPreset: uploadPreset,
+      },
+      (error, result) => {
+          if (error) {
+              console.error('Error uploading image:', error);
+          } else if (result && result.event === "success") {
+              console.log("Done! Here is the image info: ", result.info);
+
+              // Get the URL of the uploaded image
+              imageUrl = result.info.secure_url;
+
+              // Set the uploaded image URL as the source attribute
+              document.getElementById("uploadedimage").setAttribute("src", imageUrl);
+              
+              // Log imageUrl for verification
+              console.log("Image URL:", imageUrl);
+          }
+      }
+  );
+
+  // Event listener for the "Upload Photo" button
+  document.getElementById("upload_widget").addEventListener(
+      "click",
+      function () {
+          myWidget.open();
+      },
+      false
+  );
+
+  // Event listener for the form submission to create a new post
   const newPostForm = document.querySelector('.new-post-form');
-  const comments = document.querySelector('.border-dark');
+  newPostForm.addEventListener('submit', async function(event) {
+      event.preventDefault();
+      const title = document.getElementById('post-title').value;
+      const content = document.getElementById('post-content').value;
 
-  if (comments) {
-    comments.style.border = '2px solid black';
-    comments.style.padding = '10px';
-}
-
-  newPostForm.addEventListener('submit', function(event) {
-    event.preventDefault();
-    const title = document.getElementById('post-title').value;
-    const content = document.getElementById('post-content').value;
-
-    // Get the file input element
-    const imageFile = document.getElementById('post-image').files[0];
-
-    // Example validation (you should perform proper validation)
-    if (!title || !content || !imageFile) {
-      alert('Please enter title, content, and select an image for the post.');
-      return;
-    } 
-
-    // Upload image to Cloudinary
-    const formData = new FormData();
-    formData.append('file', imageFile);
-    formData.append('User_Image_Uploads', uploadPreset); // Using uploadPreset variable
-
-    fetch(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`, {
-      method: 'POST',
-      body: formData
-    })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Failed to upload image to Cloudinary.');
+      console.log("Title:", title);
+      console.log("Content:", content);
+      console.log("Image URL:", imageUrl);
+      
+      // Check if imageUrl is defined
+      if (!imageUrl) {
+          console.error("Error: Image URL is not defined.");
+          return; // Exit early
       }
-      return response.json();
-    })
-    .then(data => {
-      // Image successfully uploaded to Cloudinary
-      const imageUrl = data.secure_url;
 
-      // Example AJAX request to send new post data (including image URL) to the server
-      return fetch('/api/posts', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ title: title, content: content, imageUrl: imageUrl })
+      // Construct the data to send to the server
+      const formData = new FormData();
+      formData.append('title', title);
+      formData.append('content', content);
+      formData.append('photo', imageUrl);
+
+      // Example of sending the data using fetch API
+      fetch('/dashboard', {
+          method: 'POST',
+          body: formData
+      })
+      .then(response => {
+          // Handle response
+          console.log('Server response:', response);
+          // Clear the form fields after successful submission
+          document.getElementById('post-title').value = '';
+          document.getElementById('post-content').value = '';
+          document.getElementById('uploadedimage').setAttribute('src', ''); // Clear uploaded image
+      })
+      .catch(error => {
+          console.error('Error:', error);
+          // Handle error
       });
-    })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Failed to add post.');
-      }
-      return response.json();
-    })
-    .then(data => {
-      // Handle successful post addition (e.g., show success message)
-      alert('Post successfully added!');
-      // Optionally, you can redirect to another page after successful addition
-      window.location.href = '/dashboard';
-    })
-    .catch(error => {
-      // Handle error
-      console.error('Error adding post:', error);
-      alert('Failed to add post');
-    });
   });
 });
-
-// Cloudinary upload widget configuration
-const cloudName = "dz4oq10ph"; // replace with your own cloud name
-const uploadPreset = "User_Image_Uploads"; // replace with your own upload preset
-
-// Create Cloudinary upload widget
-const myWidget = cloudinary.createUploadWidget(
-  {
-    cloudName: cloudName,
-    uploadPreset: uploadPreset,
-  },
-  (error, result) => {
-    if (!error && result && result.event === "success") {
-      console.log("Done! Here is the image info: ", result.info);
-      document
-        .getElementById("uploadedimage")
-        .setAttribute("src", result.info.secure_url);
-    }
-  }
-);
-
-// Add event listener to open Cloudinary widget
-document.getElementById("upload_widget").addEventListener(
-  "click",
-  function () {
-    myWidget.open();
-  },
-  false
-);
-// Add event listener to open Cloudinary widget
-document.getElementById("upload_widget").addEventListener(
-  "click",
-  function () {
-    myWidget.open();
-  },
-  false
-);
-
