@@ -58,7 +58,7 @@ router.get('/signup', (req, res) => {
   res.render('signup')
 });
 
-router.post('/dashboard', withAuth, upload.single('photo'), async (req, res) => {
+router.post('/dashboard', withAuth, async (req, res) => {
   try {
     // Extract data from the request body
     const { title, content } = req.body;
