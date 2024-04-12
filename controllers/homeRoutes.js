@@ -58,11 +58,10 @@ router.get('/signup', (req, res) => {
   res.render('signup')
 });
 
-
-router.post('/dashboard', async (req, res) => {
+router.post('/dashboard', withAuth, async (req, res) => {
   try {
-    // Log the request body
-    console.log('Request Body:', req.body);
+    // Extract data from the request body
+    const { title, content } = req.body;
 
     // Extract data from the request body
     const { title, content, photo } = req.body;
