@@ -58,26 +58,26 @@ router.get('/signup', (req, res) => {
   res.render('signup')
 });
 
-router.post('/dashboard', withAuth, upload.single('photo'), async (req, res) => {
+
+router.post('/dashboard', async (req, res) => {
   try {
+    // Log the request body
+    console.log('Request Body:', req.body);
+
     // Extract data from the request body
-    const { title, content } = req.body;
+    const { title, content, photo } = req.body;
 
-    // Extract the file URL (assuming you're using Cloudinary to handle file uploads)
-    const photoUrl = req.file.secure_url;
-
-    // Validate the form data (optional)
-
-    // Create a new post using the data
+    // Create a new post using the extracted data
     const newPost = await Post.create({
       title: title,
       content: content,
-      photo: photoUrl,
+      photo: photo,
+
       // Optionally, include any other data you need to save with the post
     });
 
     // Optionally, perform additional actions like sending a response or redirecting
-    res.redirect('/profile'); // Respond with the newly created post
+    res.status(201).json({ message: 'Post created successfully', });
   } catch (error) {
     // Handle errors
     console.error('Error handling form submission:', error);
