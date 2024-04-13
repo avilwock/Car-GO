@@ -6,7 +6,7 @@ const session = require('express-session');
 const exphbs = require('express-handlebars');
 const routes = require('./controllers');
 const helpers = require('./utils/helpers');
-
+const auth = require('./utils/auth');
 
 
 // TODO: Add a comment describing the functionality of this expression
@@ -34,7 +34,7 @@ const sess = {
 //adds session middleware to the express application to allow storage of session data
 app.use(session(sess));
 
-// app.use(session(express.static('utils')))
+app.use(session(express.static('utils')))
 
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
@@ -42,6 +42,8 @@ app.set('view engine', 'handlebars');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use('/auth', auth);
 
 app.use(routes);
 
