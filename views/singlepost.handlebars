@@ -2,6 +2,8 @@
     <div class="post">
         <h1>{{ post.title }}</h1>
         <p>{{ post.content }}</p>
+        <img class="post-image" 
+        +src="{{post.photo }}">
         <p>Posted by {{ post.user.username }} on {{ format_date post.date_created }}</p>
     </div>
 </div>

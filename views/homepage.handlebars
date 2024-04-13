@@ -6,6 +6,9 @@
         <h2 class="text-light">{{ post.dataValues.title }}</h2>
         <!-- Render user's name inside an <h2> element -->
         <p> {{ post.dataValues.content }}</p>
+        {{#if post.dataValues.photo}}
+          <img class="post-image" src="{{ post.dataValues.photo }}" alt="Post Image">
+        {{/if}}
         <p> Posted by {{ post.user.dataValues.username }} on {{ format_date post.dataValues.date_created }}</p>
         <br>
       </div>

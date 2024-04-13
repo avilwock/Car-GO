@@ -18,26 +18,6 @@ router.get('/posts', withAuth, async (req, res) => {
   }
 });
 
-// Route to display a form to edit a post
-// router.get('/posts/:id/edit', withAuth, async (req, res) => {
-//   try {
-//     // Find the post by id belonging to the logged-in user
-//     const post = await Post.findOne({
-//       where: {
-//         id: req.params.id,
-//         user_id: req.session.user_id
-//       }
-//     });
-//     if (!post) {
-//       res.status(404).json({ message: 'Post not found' });
-//       return;
-//     }
-//     res.render('edit-post', { post }); // Render a form to edit the post
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
-
 //Testroute
 router.get('/edit/:id', withAuth, (req, res) => {
   Post.findOne({
