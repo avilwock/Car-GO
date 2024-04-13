@@ -7,11 +7,8 @@ const exphbs = require('express-handlebars');
 const routes = require('./controllers');
 const helpers = require('./utils/helpers');
 const auth = require('./utils/auth');
-
-
-// TODO: Add a comment describing the functionality of this expression
-//imports the sequleize store module and creates a store for session data to interact with database 
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
+const sequelize = require('./config/connection');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -33,8 +30,6 @@ const sess = {
 // TODO: Add a comment describing the functionality of this statement
 //adds session middleware to the express application to allow storage of session data
 app.use(session(sess));
-
-app.use(session(express.static('utils')))
 
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
