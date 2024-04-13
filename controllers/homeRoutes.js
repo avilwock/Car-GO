@@ -61,9 +61,6 @@ router.get('/signup', (req, res) => {
 router.post('/dashboard', withAuth, async (req, res) => {
   try {
     // Extract data from the request body
-    const { title, content } = req.body;
-
-    // Extract data from the request body
     const { title, content, photo } = req.body;
 
     // Create a new post using the extracted data
@@ -71,6 +68,7 @@ router.post('/dashboard', withAuth, async (req, res) => {
       title: title,
       content: content,
       photo: photo,
+      user_id: user_id,
 
       // Optionally, include any other data you need to save with the post
     });
