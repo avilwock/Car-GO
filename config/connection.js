@@ -22,3 +22,4 @@ if (process.env.JAWSDB_URL) {
 }
 
 module.exports = sequelize;
+///= added comment to push folder"
