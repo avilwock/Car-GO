@@ -36,7 +36,7 @@ User.init(
             },
         },
         experience_level: {
-            type: DataTypes.ENUM('novice', 'enthusiast', 'professional'),
+            type: DataTypes.ENUM('Novice', 'Enthusiast', 'Professional'),
             allowNull: false,
         }
     },

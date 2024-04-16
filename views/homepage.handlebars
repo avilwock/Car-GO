@@ -9,7 +9,7 @@
         {{#if post.dataValues.photo}}
           <img class="post-image" src="{{ post.dataValues.photo }}" alt="Post Image">
         {{/if}}
-        <p> Posted by {{ post.user.dataValues.username }} on {{ format_date post.dataValues.date_created }}</p>
+        <p> Posted by {{ post.user.dataValues.username }} on {{ format_date post.dataValues.date_created }} <span class="experience">({{post.user.dataValues.experience_level}})</span></p>
         <br>
       </div>
     </div>
@@ -22,7 +22,7 @@
         <ul>
           <div class="comment-details">
             <p>{{ comment.dataValues.comment_text }}</p>
-            <p>Comment by {{ comment.dataValues.user.dataValues.username }} on {{ format_date comment.dataValues.date_created }}</p>
+            <p>Comment by {{ comment.dataValues.user.dataValues.username }} on {{ format_date comment.dataValues.date_created }} <span class="experience">({{comment.dataValues.user.dataValues.experience_level}})</span></p>
           </div>
         </ul>
         {{/each}}

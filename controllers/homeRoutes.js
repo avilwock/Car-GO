@@ -62,13 +62,16 @@ router.post('/dashboard', withAuth, async (req, res) => {
   try {
     // Extract data from the request body
     const { title, content, photo } = req.body;
+    const user_id = req.session.user_id;
+    const experience_level = req.session.experience_level;
 
     // Create a new post using the extracted data
     const newPost = await Post.create({
-      title: title,
-      content: content,
-      photo: photo,
-      user_id: user_id,
+      title,
+      content,
+      photo,
+      user_id,
+      experience_level,
 
       // Optionally, include any other data you need to save with the post
     });

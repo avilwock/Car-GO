@@ -3,30 +3,30 @@
     "username": "Amanda",
     "email": "amanda@hotmail.com",
     "password": "Password12345",
-    "experience_level": "novice"
+    "experience_level": "Novice"
   },
   {
     "username": "Jordan",
     "email": "jordan@gmail.com",
     "password": "password12345",
-    "experience_level": "enthusiast"
+    "experience_level": "Enthusiast"
   },
   {
     "username": "Marisol",
     "email": "Marisol@gmail.com",
     "password": "Password12345",
-    "experience_level": "professional"
+    "experience_level": "Professional"
   },
   {
     "username": "JakeFromStateFarm",
     "email": "Jake@yahoo.com",
     "password": "password12345",
-    "experience_level": "professional"
+    "experience_level": "Professional"
   },
   {
     "username": "Bob",
     "email": "bob@gmail.com",
     "password": "password12345",
-    "experience-level": "enthusiast"
+    "experience-level": "Enthusiast"
   }
 ]
