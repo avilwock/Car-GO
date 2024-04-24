@@ -2,8 +2,7 @@
     <div class="post">
         <h1>{{ post.title }}</h1>
         <p>{{ post.content }}</p>
-        <img class="post-image" 
-        +src="{{post.photo }}">
+        <img class="post-image" src="{{post.photo }}">
         <p>Posted by {{ post.user.username }} on {{ format_date post.date_created }}</p>
     </div>
 </div>
@@ -29,3 +28,4 @@
 
 <!-- Include client-side JavaScript to handle comment submission -->
 <script src="/js/add-comment.js"></script>
+<script src = "/public/js/edit-delete-post.js"></script>
