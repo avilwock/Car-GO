@@ -10,7 +10,8 @@
     <input name="content" type="text" class="form-input form-control bg-white" value="{{post.content}}"/>
   </div>
   <button type="submit" class="submit-btn btn btn-danger">Update Post</button>
-  <button type="button" class="delete-post-btn btn-danger btn">Delete Post</button>
+   <!-- Add data-id attribute to identify the post ID -->
+  <button type="button" class="delete-post-btn btn-danger btn" data-id="{{post.id}}">Delete Post</button>
 </form>
 
 <script src="/js/edit-delete-post.js"></script>
