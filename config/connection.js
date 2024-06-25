@@ -1,14 +1,25 @@
-//Imports sequelize
+// Import Sequelize
 const Sequelize = require('sequelize');
-//requires .env for security
+// Require dotenv for security
 require('dotenv').config();
 
+// Create a variable to hold the sequelize instance
+let sequelize;
 
-//ensures that jawsdb_url is set to allow for use with a site like Heroku
-if (process.env.JAWSDB_URL) {
-  sequelize = new Sequelize(process.env.JAWSDB_URL);
-  //if not using heroku, then it uses these default variables and values
+if (process.env.DATABASE_URL) {
+  // Use DATABASE_URL for Render PostgreSQL
+  sequelize = new Sequelize(process.env.DATABASE_URL, {
+    dialect: 'postgres',
+    protocol: 'postgres',
+    dialectOptions: {
+      ssl: {
+        require: true,
+        rejectUnauthorized: false // You might need to adjust this based on your setup
+      }
+    }
+  });
 } else {
+  // If DATABASE_URL is not set, use local MySQL
   sequelize = new Sequelize(
     process.env.DB_NAME,
     process.env.DB_USER,
@@ -22,4 +33,3 @@ if (process.env.JAWSDB_URL) {
 }
 
 module.exports = sequelize;
-///= added comment to push folder"
