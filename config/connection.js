@@ -1,19 +1,25 @@
-// Imports Sequelize
+//Imports sequelize
 const Sequelize = require('sequelize');
-// Requires .env for security
+//requires .env for security
 require('dotenv').config();
 
-// Establish Sequelize connection based on environment variables
-const sequelize = new Sequelize(
-  process.env.DB_NAME,
-  process.env.DB_USER,
-  process.env.DB_PASSWORD,
-  {
-    host: process.env.DB_HOST || 'localhost',
-    dialect: 'mysql',
-    port: 3306,
-    logging: false // Disable logging (optional)
-  }
-);
+
+//ensures that jawsdb_url is set to allow for use with a site like Heroku
+if (process.env.DATABASE_URL) {
+  sequelize = new Sequelize(process.env.DATABASE_URL);
+  //if not using heroku, then it uses these default variables and values
+} else {
+  sequelize = new Sequelize(
+    process.env.DB_NAME,
+    process.env.DB_USER,
+    process.env.DB_PASSWORD,
+    {
+      host: process.env.DB_HOST,
+      dialect: 'mysql',
+      port: 3306
+    }
+  );
+}
 
 module.exports = sequelize;
+///= added comment to push folder"
